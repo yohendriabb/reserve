@@ -40,12 +40,28 @@ const router = createRouter({
       component: MessagesView
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/profile/:id',
+      name: 'profile',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/ProfileView.vue')
+    },
+    {
+      path: '/date',
+      name: 'date',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/DateView.vue')
+    },
+    {
+      path: '/date-list',
+      name: 'date-list',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/DateListView.vue')
     },
     {
       path: '/users-list',
@@ -72,6 +88,14 @@ const router = createRouter({
       component: () => import('../views/DoctorView.vue')
     },
     {
+      path: '/services',
+      name: 'services',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/ServicesView.vue')
+    },
+    {
       path: '/logout',
       name: 'logout',
       // route level code-splitting
@@ -79,7 +103,16 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/LogoutView.vue')
     },
+    {
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AboutView.vue')
+    },
   ]
 })
 
 export default router
+

@@ -21,6 +21,7 @@ export default {
             errors: []
         }
     },
+    
     methods: {
         async submitForm() {
             this.errors = []
@@ -54,7 +55,7 @@ export default {
                     .then(response => {
                         this.userStore.setUserInfo(response.data)
 
-                        this.$router.push('/feed')
+                        this.$router.push('/date')
                     })
                     .catch(error => {
                         console.log('error', error)
@@ -69,22 +70,8 @@ export default {
   <main class="px-8 py-6 bg-gray-100">
     <main class="px-8 py-6 bg-gray-100">
       <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
-        <div class="main-left col-span-2">
-          <div class="p-12 bg-white border border-gray-200 rounded-lg">
-            <h1 class="mb-6 text-2xl">Login</h1>
-
-            <p class="mb-6 text-gray-500">
-              Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
-              Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
-            </p>
-
-            <p class="font-bold">
-              Don't have an account? <RouterLink to="/signup" class="underline">Click here</RouterLink> to create one!
-            </p>
-          </div>
-        </div>
-
-        <div class="main-center col-span-2 space-y-4">
+  
+        <div class="main-center col-span-2 space-y-4 md:w-auto">
           <div class="p-12 bg-white border border-gray-200 rounded-lg">
             <form class="space-y-6" v-on:submit.prevent="submitForm">
               <div>

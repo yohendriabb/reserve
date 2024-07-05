@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
    <section
       class="items-center mt-3 mb-3 bg-no-repeat bg-[url('/src/assets/img/05.jpeg')] bg-gray-700 bg-blend-multiply">
@@ -23,40 +19,63 @@
          </div>
       </div>
    </section>
-   <label class="text-4xl  font-bold ml-[50%]">Servicios</label>
-   <div class="flex justify-around items-center bg-dark-100">
-      <div class="max-w-sm rounded overflow-hidden shadow-lg mb-2">
-         <img class="w-full h-full ml-2 shadow-blue-300" src="/src/assets/img/01.jpeg" alt="Sunset in the mountains">
-         <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">Laboratorio Clínico</div>
-            <p class="text-gray-700 text-base">
-               Realiza exámenes de laboratorio para detectar enfermedades en etapa temprana.
-            </p>
+
+
+   <article>
+      <label class="text-4xl  font-bold ml-[50%]">Servicios</label>
+      <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+         <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
+            <div v-for="services in service" :key="services.id"
+               class="border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+               <img :src="services.get_thumbnails" :alt="service.title" class="w-full h-80">
+               <div class="p-4 pt-2">
+                  <div class="mb-8">
+
+                     <a href="#" class="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 inline-block">{{
+                        services.title }}</a>
+
+                  </div>
+                  <div class="flex items-center">
+                     <div class="text-sm">
+                        <a href="#" class="text-gray-900 font-semibold leading-none hover:text-indigo-600">Leer más</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
          </div>
 
       </div>
+   </article>
 
-      <div class="max-w-sm rounded overflow-hidden shadow-lg mb-2">
-         <img class="w-full h-full ml-2 shadow-blue-300" src="/src/assets/img/02.jpeg" alt="Sunset in the mountains">
-         <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">Laboratorio Clínico</div>
-            <p class="text-gray-700 text-base">
-               Realiza exámenes de laboratorio para detectar enfermedades en etapa temprana.
-            </p>
-         </div>
 
-      </div>
-
-      <div class="max-w-sm rounded overflow-hidden shadow-lg mb-2">
-         <img class="w-full h-full ml-2 shadow-blue-300" src="/src/assets/img/04.jpeg" alt="Sunset in the mountains">
-         <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">Laboratorio Clínico</div>
-            <p class="text-gray-700 text-base">
-               Realiza exámenes de laboratorio para detectar enfermedades en etapa temprana.
-            </p>
-         </div>
-
-      </div>
-
-   </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+   name: 'HomePage',
+   data() {
+      return {
+         service: []
+      }
+   },
+   mounted() {
+      this.getFeed()
+   },
+   methods: {
+      getFeed() {
+         axios.get('/api/reserves/services/')
+            .then(response => {
+               console.log('data', response.data)
+
+               this.service = response.data
+            })
+            .catch(error => {
+               console.log('error', error)
+            })
+      }
+   }
+}
+</script>
